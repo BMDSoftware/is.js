@@ -1,5 +1,5 @@
 /*!
- * is.js 0.9.0
+ * is.js 0.9.1-BMD
  * Author: Aras Atasaygin
  */
 
@@ -29,7 +29,7 @@
 
     // define 'is' object and current version
     var is = {};
-    is.VERSION = '0.9.0';
+    is.VERSION = '0.9.1-BMD';
 
     // define interfaces
     is.not = {};
@@ -674,10 +674,8 @@
     is.ios.api = ['not'];
 
     // is current device ipad?
-    // parameter is optional
-    is.ipad = function(range) {
-        var match = userAgent.match(/ipad.+?os (\d+)/);
-        return match !== null && compareVersion(match[1], range);
+    is.ipad = function() {
+        return userAgent.match(/(iPad)/) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     };
     // ipad method does not support 'all' and 'any' interfaces
     is.ipad.api = ['not'];
